@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Gregor's Fish Trade Ltd.</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'/>
+
+		<script src="resources/sap-ui-core.js"
+				id="sap-ui-bootstrap"
+				data-sap-ui-libs="sap.m"
+				data-sap-ui-resourceroots='{"com.csw": "./"}'
+				data-sap-ui-theme="sap_bluecrystal"
+				data-sap-ui-xx-bindingSyntax="complex">
+		</script>
+		<!-- only load the mobile lib "sap.m" and the "sap_bluecrystal" theme -->
+		
+		
+		<script>
+				sap.ui.localResources("view");
+				var app = new sap.m.App({initialPage:"idMaster"});
+				var master = sap.ui.view({id:"idMaster", viewName:"com.csw.view.Master", type:sap.ui.core.mvc.ViewType.XML});
+				var details = sap.ui.view({id:"idDetails", viewName:"com.csw.view.Details", type:sap.ui.core.mvc.ViewType.XML});
+				app.addPage(master).addPage(details);
+				app.placeAt("content");
+		</script>
+
+		<!-- Section for service binding -->
+		<script src="serviceBinding.js"></script>
+		<script>
+			initModel();
+		</script>
+		
+	</head>
+	<body class="sapUiBody" role="application">
+		<div id="content"></div>
+	</body>
+</html>
+	
+
+
+

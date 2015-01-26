@@ -1,0 +1,30 @@
+<core:View xmlns:core="sap.ui.core" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m" controllerName="com.csw.view.Master" 
+	xmlns:html="http://www.w3.org/1999/xhtml">
+  <Page
+    title="Gregor's Fish Trade Ltd."
+    showHeader="true"
+    enableScrolling="false" >
+    <headerContent>
+      <Button icon="sap-icon://refresh" press="handleRefresh" tap="handleRefresh" />
+    </headerContent>
+    <TileContainer
+      id="container"
+      tileDelete="handleTileDelete"
+      tiles="{ 
+                path: '/sensors',
+                parameters:{expand : 'last_measurement'}
+            }">
+      <StandardTile
+        icon="sap-icon://temperature"
+        type="Monitor"
+        number="{path:'last_measurement/value', formatter:'com.csw.util.Formatter.temperatureValue'}"
+        numberUnit="{last_measurement/unit}"
+        title="{description}, {device}, {type} ({id})"
+        info="{path:'last_measurement/storedAt', formatter:'com.csw.util.Formatter.dateIso'}, {last_measurement/id}"
+        press="onSelect"
+        infoState="Success" />
+    </TileContainer>
+  </Page>
+</core:View>
