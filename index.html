@@ -5,7 +5,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'/>
 
-		<script src="resources/sap-ui-core.js"
+		<!-- <script src="resources/sap-ui-core.js" -->
+		<script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
 				id="sap-ui-bootstrap"
 				data-sap-ui-libs="sap.m"
 				data-sap-ui-resourceroots='{"com.csw": "./"}'
@@ -20,6 +21,22 @@
 				var app = new sap.m.App({initialPage:"idMaster"});
 				var master = sap.ui.view({id:"idMaster", viewName:"com.csw.view.Master", type:sap.ui.core.mvc.ViewType.XML});
 				var details = sap.ui.view({id:"idDetails", viewName:"com.csw.view.Details", type:sap.ui.core.mvc.ViewType.XML});
+                details.addEventDelegate({
+                    onBeforeShow: function(evt) {
+                      // alert(evt.data.sPath);
+                      // ...now retrieve the data element with the given ID and update the page UI
+                        /sensor_measurements?$format=json&$top=20&$orderby=measuredAt%20desc
+                        var binding = {
+                                path: evt.data.sPath + '/sensor_measurements',
+                                parameters:
+                                    {
+                                        top : '20',
+                                        orderby: 'measuredAt desc'
+                                    }
+                            };
+                        
+                    }
+                });
 				app.addPage(master).addPage(details);
 				app.placeAt("content");
 		</script>
